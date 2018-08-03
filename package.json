@@ -1,0 +1,36 @@
+{
+  "name": "ecs-task-definition-validator",
+  "version": "0.1.0",
+  "description": "Validate the an ECS Task Definition",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --recursive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bugcrowd/ecs-task-definition-validator.git"
+  },
+  "keywords": [
+    "ECS",
+    "Task",
+    "Definition",
+    "Schema",
+    "Validate",
+    "Validator",
+    "Validation"
+  ],
+  "author": "Coen Hyde",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bugcrowd/ecs-task-definition-validator/issues"
+  },
+  "homepage": "https://github.com/bugcrowd/ecs-task-definition-validator#readme",
+  "dependencies": {
+    "jsonschema": "^1.2.4",
+    "requirize": "^0.1.3"
+  },
+  "devDependencies": {
+    "expect.js": "^0.3.1",
+    "mocha": "^5.2.0"
+  }
+}
