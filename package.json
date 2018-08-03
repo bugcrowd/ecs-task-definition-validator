@@ -1,6 +1,6 @@
 {
   "name": "ecs-task-definition-validator",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Validate the an ECS Task Definition",
   "main": "index.js",
   "scripts": {
