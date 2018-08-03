@@ -53,6 +53,7 @@ const taskDefinitionSchema = {
 const containerDefinitionSchema = {
   'id': '/containerDefinition',
   'type': 'object',
+  'required': ['name', 'image'],
   'properties': {
     'name': {
       'type': 'string'
