@@ -1,122 +1,100 @@
 {
-   "containerDefinitions": [
-      {
-         "command": [ "string" ],
-         "cpu": 1,
-         "disableNetworking": true,
-         "dnsSearchDomains": [ "string" ],
-         "dnsServers": [ "string" ],
-         "dockerLabels": {
-            "string" : "string"
-         },
-         "dockerSecurityOptions": [ "string" ],
-         "entryPoint": [ "string" ],
-         "environment": [
-            {
-               "name": "string",
-               "value": "string"
-            }
-         ],
-         "essential": true,
-         "extraHosts": [
-            {
-               "hostname": "string",
-               "ipAddress": "string"
-            }
-         ],
-         "healthCheck": {
-            "command": [ "string" ],
-            "interval": 1,
-            "retries": 1,
-            "startPeriod": 1,
-            "timeout": 1
-         },
-         "hostname": "string",
-         "image": "string",
-         "links": [ "string" ],
-         "linuxParameters": {
-            "capabilities": {
-               "add": [ "string" ],
-               "drop": [ "string" ]
-            },
-            "devices": [
-               {
-                  "containerPath": "string",
-                  "hostPath": "string",
-                  "permissions": [ "string" ]
-               }
-            ],
-            "initProcessEnabled": true,
-            "sharedMemorySize": 1,
-            "tmpfs": [
-               {
-                  "containerPath": "string",
-                  "mountOptions": [ "string" ],
-                  "size": 1
-               }
-            ]
-         },
-         "logConfiguration": {
-            "logDriver": "string",
-            "options": {
-               "string" : "string"
-            }
-         },
-         "memory": 1,
-         "memoryReservation": 1,
-         "mountPoints": [
-            {
-               "containerPath": "string",
-               "readOnly": true,
-               "sourceVolume": "string"
-            }
-         ],
-         "name": "string",
-         "portMappings": [
-            {
-               "containerPort": 1,
-               "hostPort": 1,
-               "protocol": "string"
-            }
-         ],
-         "privileged": true,
-         "readonlyRootFilesystem": true,
-         "ulimits": [
-            {
-               "hardLimit": 1,
-               "name": "string",
-               "softLimit": 1
-            }
-         ],
-         "user": "string",
-         "volumesFrom": [
-            {
-               "readOnly": true,
-               "sourceContainer": "string"
-            }
-         ],
-         "workingDirectory": "string"
+  "containerDefinitions": [{
+    "command": ["string"],
+    "cpu": 1,
+    "disableNetworking": true,
+    "dnsSearchDomains": ["string"],
+    "dnsServers": ["string"],
+    "dockerLabels": {
+      "string": "string"
+    },
+    "dockerSecurityOptions": ["string"],
+    "entryPoint": ["string"],
+    "environment": [{
+      "name": "string",
+      "value": "string"
+    }],
+    "essential": true,
+    "extraHosts": [{
+      "hostname": "string",
+      "ipAddress": "string"
+    }],
+    "healthCheck": {
+      "command": ["string"],
+      "interval": 1,
+      "retries": 1,
+      "startPeriod": 1,
+      "timeout": 1
+    },
+    "hostname": "string",
+    "image": "string",
+    "links": ["string"],
+    "linuxParameters": {
+      "capabilities": {
+        "add": ["string"],
+        "drop": ["string"]
+      },
+      "devices": [{
+        "containerPath": "string",
+        "hostPath": "string",
+        "permissions": ["string"]
+      }],
+      "initProcessEnabled": true,
+      "sharedMemorySize": 1,
+      "tmpfs": [{
+        "containerPath": "string",
+        "mountOptions": ["string"],
+        "size": 1
+      }]
+    },
+    "logConfiguration": {
+      "logDriver": "string",
+      "options": {
+        "string": "string"
       }
-   ],
-   "cpu": "string",
-   "executionRoleArn": "string",
-   "family": "string",
-   "memory": "string",
-   "networkMode": "string",
-   "placementConstraints": [
-      {
-         "expression": "string",
-         "type": "string"
-      }
-   ],
-   "requiresCompatibilities": [ "string" ],
-   "taskRoleArn": "string",
-   "volumes": [
-      {
-         "host": {
-            "sourcePath": "string"
-         },
-         "name": "string"
-      }
-   ]
+    },
+    "memory": 1,
+    "memoryReservation": 1,
+    "mountPoints": [{
+      "containerPath": "string",
+      "readOnly": true,
+      "sourceVolume": "string"
+    }],
+    "name": "string",
+    "portMappings": [{
+      "containerPort": 1,
+      "hostPort": 1,
+      "protocol": "string"
+    }],
+    "privileged": true,
+    "readonlyRootFilesystem": true,
+    "ulimits": [{
+      "hardLimit": 1,
+      "name": "string",
+      "softLimit": 1
+    }],
+    "user": "string",
+    "volumesFrom": [{
+      "readOnly": true,
+      "sourceContainer": "string"
+    }],
+    "workingDirectory": "string"
+  }],
+  "cpu": "string",
+  "executionRoleArn": "string",
+  "family": "string",
+  "memory": "string",
+  "networkMode": "string",
+  "placementConstraints": [{
+    "expression": "string",
+    "type": "string"
+  }],
+  "requiresCompatibilities": ["string"],
+  "taskRoleArn": "string",
+  "volumes": [{
+    "host": {
+      "sourcePath": "string"
+    },
+    "name": "string"
+  }]
 }
