@@ -1,0 +1,7 @@
+{
+  "containerDefinitions": [{
+    "image": "string",
+    "name": "string"
+  }],
+  "family": "string"
+}

@@ -1,7 +1,6 @@
 'use strict'
 
 var Validator = require('jsonschema').Validator;
-var v = new Validator();
 
 const taskDefinitionSchema = {
   'id': '/taskDefinition',
@@ -177,7 +176,6 @@ const containerDefinitionSchema = {
     },
   }
 };
-v.addSchema(containerDefinitionSchema, containerDefinitionSchema.id);
 
 const containerPortMappingSchema = {
   'id': '/containerPortMapping',
@@ -195,7 +193,6 @@ const containerPortMappingSchema = {
     },
   }
 };
-v.addSchema(containerPortMappingSchema, containerPortMappingSchema.id);
 
 const containerHealthCheckSchema = {
   'id': '/containerHealthCheck',
@@ -221,7 +218,6 @@ const containerHealthCheckSchema = {
     },
   }
 };
-v.addSchema(containerHealthCheckSchema, containerHealthCheckSchema.id);
 
 const containerEnvironmentSchema = {
   'id': '/containerEnvironment',
@@ -236,7 +232,6 @@ const containerEnvironmentSchema = {
     },
   }
 };
-v.addSchema(containerEnvironmentSchema, containerEnvironmentSchema.id);
 
 const containerExtraHostSchema = {
   'id': '/containerExtraHost',
@@ -251,7 +246,6 @@ const containerExtraHostSchema = {
     },
   }
 };
-v.addSchema(containerExtraHostSchema, containerExtraHostSchema.id);
 
 const containerMountPointSchema = {
   'id': '/containerMountPoint',
@@ -269,7 +263,6 @@ const containerMountPointSchema = {
     },
   }
 };
-v.addSchema(containerMountPointSchema, containerMountPointSchema.id);
 
 const containerVolumesFromSchema = {
   'id': '/containerVolumesFrom',
@@ -284,7 +277,6 @@ const containerVolumesFromSchema = {
     },
   }
 };
-v.addSchema(containerVolumesFromSchema, containerVolumesFromSchema.id);
 
 const containerLogConfigurationSchema = {
   'id': '/containerLogConfiguration',
@@ -299,7 +291,6 @@ const containerLogConfigurationSchema = {
     },
   }
 };
-v.addSchema(containerLogConfigurationSchema, containerLogConfigurationSchema.id);
 
 const containerUlimitsSchema = {
   'id': '/containerUlimits',
@@ -317,7 +308,6 @@ const containerUlimitsSchema = {
     },
   }
 };
-v.addSchema(containerUlimitsSchema, containerUlimitsSchema.id);
 
 const containerLinuxParametersSchema = {
   'id': '/containerLinuxParameters',
@@ -346,7 +336,6 @@ const containerLinuxParametersSchema = {
     },
   }
 };
-v.addSchema(containerLinuxParametersSchema, containerLinuxParametersSchema.id);
 
 const containerLinuxParametersCapabilitySchema = {
   'id': '/containerLinuxParametersCapability',
@@ -366,7 +355,6 @@ const containerLinuxParametersCapabilitySchema = {
     },
   }
 };
-v.addSchema(containerLinuxParametersCapabilitySchema, containerLinuxParametersCapabilitySchema.id);
 
 const containerLinuxParametersDeviceSchema = {
   'id': '/containerLinuxParametersDevice',
@@ -387,7 +375,6 @@ const containerLinuxParametersDeviceSchema = {
     },
   }
 };
-v.addSchema(containerLinuxParametersDeviceSchema, containerLinuxParametersDeviceSchema.id);
 
 const containerLinuxParametersTmpfsSchema = {
   'id': '/containerLinuxParametersTmpfs',
@@ -408,7 +395,6 @@ const containerLinuxParametersTmpfsSchema = {
     }
   }
 };
-v.addSchema(containerLinuxParametersTmpfsSchema, containerLinuxParametersTmpfsSchema.id);
 
 const volume = {
   'id': '/volume',
@@ -423,7 +409,6 @@ const volume = {
     },
   }
 };
-v.addSchema(volume, volume.id);
 
 const volumeHostSchema = {
   'id': '/volumeHost',
@@ -434,7 +419,6 @@ const volumeHostSchema = {
     }
   }
 };
-v.addSchema(volumeHostSchema, volumeHostSchema.id);
 
 const placementConstraintSchema = {
   'id': '/placementConstraint',
@@ -449,8 +433,35 @@ const placementConstraintSchema = {
     },
   }
 };
-v.addSchema(placementConstraintSchema, placementConstraintSchema.id);
 
-module.exports = function(taskDefinition) {
+module.exports = function(taskDefinition, schemaTransformFn) {
+  if (!schemaTransformFn) schemaTransformFn = (schema) => schema;
+  let v = new Validator();
+
+  let schemas = [
+    containerDefinitionSchema,
+    containerPortMappingSchema,
+    containerHealthCheckSchema,
+    containerEnvironmentSchema,
+    containerExtraHostSchema,
+    containerMountPointSchema,
+    containerVolumesFromSchema,
+    containerLogConfigurationSchema,
+    containerUlimitsSchema,
+    containerLinuxParametersSchema,
+    containerLinuxParametersCapabilitySchema,
+    containerLinuxParametersDeviceSchema,
+    containerLinuxParametersTmpfsSchema,
+    volume,
+    volumeHostSchema,
+    placementConstraintSchema,
+  ];
+
+  schemas.forEach((schema) => {
+    let modifiedSchema = schemaTransformFn(schema);
+    // console.log(modifiedSchema);
+    v.addSchema(modifiedSchema, modifiedSchema.id);
+  });
+
   return v.validate(taskDefinition, taskDefinitionSchema);
 };

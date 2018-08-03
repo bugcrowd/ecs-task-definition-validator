@@ -15,4 +15,19 @@ describe('EcsTaskDefinitionValidator', function() {
     let result = validator(fixtures['validTaskDefinition']);
     expect(result.errors.length).to.equal(0);
   });
+
+  it('should allow modification of schema', function() {
+    let result = validator(fixtures['missingPortMapping']);
+    expect(result.errors.length).to.equal(0);
+
+    function schemaUpdate(schema) {
+      if (schema.id !== '/containerDefinition') return schema;
+
+      schema.required.push('portMappings');
+      return schema;
+    }
+
+    let result2 = validator(fixtures['missingPortMapping'], schemaUpdate);
+    expect(result2.errors.length).to.be.greaterThan(0);
+  });
 });
