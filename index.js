@@ -439,6 +439,7 @@ module.exports = function(taskDefinition, schemaTransformFn) {
   let v = new Validator();
 
   let schemas = [
+    taskDefinitionSchema,
     containerDefinitionSchema,
     containerPortMappingSchema,
     containerHealthCheckSchema,
@@ -463,5 +464,5 @@ module.exports = function(taskDefinition, schemaTransformFn) {
     v.addSchema(modifiedSchema, modifiedSchema.id);
   });
 
-  return v.validate(taskDefinition, taskDefinitionSchema);
+  return v.validate(taskDefinition, v.getSchema('/taskDefinition'));
 };
