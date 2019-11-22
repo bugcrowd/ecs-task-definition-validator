@@ -102,6 +102,12 @@ const containerDefinitionSchema = {
         '$ref': '/containerEnvironment'
       }
     },
+    'secrets': {
+      'type': 'array',
+      'items': {
+        '$ref': '/containerSecrets'
+      }
+    },
     'disableNetworking': {
       'type': 'boolean'
     },
@@ -228,6 +234,20 @@ const containerEnvironmentSchema = {
       'type': 'string'
     },
     'value': {
+      'type': 'string'
+    },
+  }
+};
+
+const containerSecretsSchema = {
+  'id': '/containerSecrets',
+  'type': 'object',
+  'required': ['name', 'valueFrom'],
+  'properties': {
+    'name': {
+      'type': 'string'
+    },
+    'valueFrom': {
       'type': 'string'
     },
   }
@@ -444,6 +464,7 @@ module.exports = function(taskDefinition, schemaTransformFn) {
     containerPortMappingSchema,
     containerHealthCheckSchema,
     containerEnvironmentSchema,
+    containerSecretsSchema,
     containerExtraHostSchema,
     containerMountPointSchema,
     containerVolumesFromSchema,
