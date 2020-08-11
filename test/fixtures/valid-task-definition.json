@@ -100,5 +100,28 @@
       "sourcePath": "string"
     },
     "name": "string"
+  },
+  {
+    "name": "string",
+    "dockerVolumeConfiguration": {
+      "scope": "task",
+      "autoprovision": false,
+      "driver": "string",
+      "driverOpts": "string",
+      "labels": "string"
+    }
+  },
+  {
+    "name": "string",
+    "efsVolumeConfiguration": {
+      "fileSystemId": "string",
+      "rootDirectory": "string",
+      "transitEncryption": "ENABLED",
+      "transitEncryptionPort": 1234,
+      "authorizationConfig": {
+        "accessPointId": "string",
+        "iam": "ENABLED"
+      }
+    }
   }]
 }

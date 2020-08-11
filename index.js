@@ -419,7 +419,6 @@ const containerLinuxParametersTmpfsSchema = {
 const volume = {
   'id': '/volume',
   'type': 'object',
-  'required': ['name'],
   'properties': {
     'name': {
       'type': 'string'
@@ -427,6 +426,13 @@ const volume = {
     'host': {
       '$ref': '/volumeHost'
     },
+    'dockerVolumeConfiguration': {
+      '$ref': '/volumeDockerVolumeConfiguration'
+
+    },
+    'efsVolumeConfiguration': {
+      '$ref': '/volumeEfsVolumeConfiguration'
+    }
   }
 };
 
@@ -436,6 +442,64 @@ const volumeHostSchema = {
   'properties': {
     'sourcePath': {
       'type': 'string'
+    }
+  }
+};
+
+const volumeDockerVolumeConfigurationSchema = {
+  'id': '/volumeDockerVolumeConfiguration',
+  'type': 'object',
+  'properties': {
+    'scope': {
+      'enum': ['task', 'shared']
+    },
+    'autoprovision': {
+      'type': 'boolean'
+    },
+    'driver': {
+      'type': 'string'
+    },
+    'driverOpts': {
+      'type': 'string'
+    },
+    'labels': {
+      'type': 'string'
+    },
+  }
+};
+
+const volumeEfsVolumeConfigurationSchema = {
+  'id': '/volumeEfsVolumeConfiguration',
+  'type': 'object',
+  'required': ['fileSystemId'],
+  'properties': {
+    'fileSystemId': {
+      'type': 'string'
+    },
+    'rootDirectory': {
+      'type': 'string'
+    },
+    'transitEncryption': {
+      'enum': ['ENABLED', 'DISABLED']
+    },
+    'transitEncryptionPort': {
+      'type': 'integer'
+    },
+    'authorizationConfig': {
+      '$ref': '/volumeEfsVolumeConfigurationAuthorizationConfig'
+    }
+  }
+};
+
+const volumeEfsVolumeConfigurationAuthorizationConfigSchema = {
+  'id': '/volumeEfsVolumeConfigurationAuthorizationConfig',
+  'type': 'object',
+  'properties': {
+    'accessPointId': {
+      'type': 'string'
+    },
+    'iam': {
+      'enum': ['ENABLED', 'DISABLED']
     }
   }
 };
@@ -476,6 +540,9 @@ module.exports = function(taskDefinition, schemaTransformFn) {
     containerLinuxParametersTmpfsSchema,
     volume,
     volumeHostSchema,
+    volumeDockerVolumeConfigurationSchema,
+    volumeEfsVolumeConfigurationSchema,
+    volumeEfsVolumeConfigurationAuthorizationConfigSchema,
     placementConstraintSchema,
   ];
 
