@@ -1,6 +1,6 @@
 {
-  "name": "ecs-task-definition-validator",
-  "version": "0.2.2",
+  "name": "@bugcrowd/ecs-task-definition-validator",
+  "version": "0.2.3",
   "description": "Validate the an ECS Task Definition",
   "main": "index.js",
   "scripts": {

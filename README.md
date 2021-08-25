@@ -6,7 +6,9 @@ ECS Task Definition Validator uses JSON Schema to validate ECS Task Definitions.
 Installation
 ------------
 
-`npm install ecs-task-definition-validator --save`
+**NOTE:** We have moved the package under our `bugcrowd` NPM organization - this will be the only package location maintained going forward.
+
+`npm install @bugcrowd/ecs-task-definition-validator --save`
 
 Usage
 -----
